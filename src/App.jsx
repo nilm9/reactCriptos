@@ -39,7 +39,7 @@ function App() {
   return (
     <Contenedor>
       <Imagen src={ImagenCripto}  alt="imagenes criptomonedas"/>
-         <Heading>desde app tusa</Heading>
+         <Heading>desde app</Heading>
     </Contenedor>
 
   )
