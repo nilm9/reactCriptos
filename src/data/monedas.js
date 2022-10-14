@@ -1,8 +1,8 @@
 const monedas = [
-  { id: "USD", nombre: "Dolar de USA" },
-  { id: "EUR", nombre: "Euros" },
-  { id: "GBP", nombre: "Libra Esrterlina" },
-  { id: "MXN", nombre: "Peso Mexicano" },
+  { id: "USD", nombre: "US Dollar" },
+  { id: "EUR", nombre: "Euro" },
+  { id: "GBP", nombre: "Pound Sterling" },
+  { id: "MXN", nombre: " Mexico's peso" },
 ];
 
 export { monedas };

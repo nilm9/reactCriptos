@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import ImagenCripto from './img/imagen-criptos.png'
 import Formulario from './components/Formulario'
 import Resultado from './components/Resultado'
-
+import Spinner from './components/Spinner'
 
 const Contenedor = styled.div`
 max-width: 900px;
@@ -44,17 +44,26 @@ font-size: 34px;
 
 `
 
+const Center = styled.div`
+  display: flex;
+    justify-content: center;
+
+`
+
 const App = () => {
 
   const [monedas, setMonedas] = useState({})
   const [resultado, setResutlado] = useState({})
+  const [cargando, setCargando] = useState(false)
 
   useEffect(() => {
     if(Object.keys(monedas).length > 0){
       const {moneda, cripto}= monedas
 
       const cotizarCripto = async () => {
-      
+        setCargando(true)
+        setResutlado({});
+
         const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cripto}&tsyms=${moneda},EUR`;
 
         const response = await fetch(url)
@@ -63,6 +72,7 @@ const App = () => {
         //Brackets are used to search into tje object a property with this name
 
         setResutlado(result.DISPLAY[cripto][moneda]);
+        setCargando(false);
       
       }
       cotizarCripto();
@@ -75,14 +85,20 @@ const App = () => {
     <Contenedor>
         <Imagen
         src={ImagenCripto}
-        alt="imagen cripto"
+        alt="img cripto"
         />
         <div>
-        <Heading> Cotiza Criptomonedas Al Instante </Heading>
+        <Heading> Trade Criptos </Heading>
         <Formulario setMonedas={setMonedas}/>
+        <Center>
+        {resultado.PRICE && <Resultado resultado={resultado} /> }
+        {cargando && <Spinner/>}
+        </Center>
+
+
 
         </div>
-        {resultado.PRICE && <Resultado resultado={resultado} /> }
+
         
 
 
